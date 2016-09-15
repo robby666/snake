@@ -27,6 +27,13 @@ public class MyAgent extends DevelopmentAgent {
             String initString = br.readLine();
             String[] temp = initString.split(" ");
             int nSnakes = Integer.parseInt(temp[0]);
+            int w = Integer.parseInt(temp[1]);
+            int h = Integer.parseInt(temp[2]);
+            int[][] Matrix = new int[w][h];
+            for(int i = 0; i<w; i++)
+              for(int j = 0; j<h; j++)
+                 Matrix[j][i] = 0;
+            int mode = Integer.parseInt(temp[3]);
             while (true) {
                 String line = br.readLine();
                 if (line.contains("Game Over")) {
@@ -37,6 +44,7 @@ public class MyAgent extends DevelopmentAgent {
                 //do stuff with apples
                 for (int i = 0; i < 3; i++) {
                     String zombie = br.readLine();
+                    //use drawsnake
                 }
                 int mySnakeNum = Integer.parseInt(br.readLine());
                 for (int i = 0; i < nSnakes; i++) {
@@ -55,4 +63,7 @@ public class MyAgent extends DevelopmentAgent {
             e.printStackTrace();
         }
     }
+    private void BreadthFirstSearch(){
+     
+   }
 }
