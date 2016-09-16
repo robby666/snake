@@ -20,16 +20,16 @@ public class Maze
                             {1,1,1,1,1,1,1,1,1,1,1,1,1} };
 
 
-   public static boolean traverse (int row, int column)
+   public static boolean traverse (int row, int column)//swap row and column
    {
       boolean done = false;
       
       if (valid (row,column))
       {
-         grid[row][column] = TRIED;  // this cell has been tried
+         grid[row][column] = TRIED;  
 
          if (row == grid.length-1 && column == grid[0].length-1)
-            done = true;  // the maze is solved
+            done = true;  
          else
          {
             done = traverse (row+1, column);     // down
@@ -49,9 +49,7 @@ public class Maze
       return done;
    }
    
-   //-----------------------------------------------------------------
-   //  Determines if a specific location is valid.
-   //-----------------------------------------------------------------
+
    private static boolean  valid (int row, int column)
    {
       boolean result = false;
@@ -67,9 +65,7 @@ public class Maze
       return result;
    }
 
-   //-----------------------------------------------------------------
-   //  Returns the maze as a string.
-   //-----------------------------------------------------------------
+   
    public static String getPath()
    {
        Collections.reverse(steps);

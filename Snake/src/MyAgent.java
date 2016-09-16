@@ -11,11 +11,17 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Random;
+import java.util.*;
 import za.ac.wits.snake.DevelopmentAgent;
 
-public class MyAgent extends DevelopmentAgent {
 
+
+public class MyAgent extends DevelopmentAgent {
+    public static int[][] Matrix;
+    public int me = 1;
+    public int open = 0;
+    public int apple =9;
+    
     public static void main(String args[]) throws IOException {
         MyAgent agent = new MyAgent();
         MyAgent.start(agent, args);
@@ -29,7 +35,7 @@ public class MyAgent extends DevelopmentAgent {
             int nSnakes = Integer.parseInt(temp[0]);
             int w = Integer.parseInt(temp[1]);
             int h = Integer.parseInt(temp[2]);
-            int[][] Matrix = new int[w][h];
+            Matrix = new int[w][h];
             for(int i = 0; i<w; i++)
               for(int j = 0; j<h; j++)
                  Matrix[j][i] = 0;
@@ -40,8 +46,12 @@ public class MyAgent extends DevelopmentAgent {
                     break;
                 }
                 String apple1 = line;
+                String[] app1 = apple1.split(" ");
+                addApple(Integer.parseInt(app1[0]),Integer.parseInt(app1[1]));
                 String apple2 = br.readLine();
-                //do stuff with apples
+                String[] app2 = apple2.split(" ");
+                addApple(Integer.parseInt(app2[0]),Integer.parseInt(app2[1]));
+                //do stuff with apples//add to matrix
                 for (int i = 0; i < 3; i++) {
                     String zombie = br.readLine();
                     //use drawsnake
@@ -49,9 +59,14 @@ public class MyAgent extends DevelopmentAgent {
                 int mySnakeNum = Integer.parseInt(br.readLine());
                 for (int i = 0; i < nSnakes; i++) {
                     String snakeLine = br.readLine();
+                    String[]tmp = snakeLine.split(" ");
+                    for (int j=0;j<4;j++)
+                       tmp = removeElement(tmp,0);
+                    
                     if (i == mySnakeNum) {
-                        //hey! That's me :)
+                        //hey! That's me :) drawsnake with 1
                     }
+                    else{}//draw other snakes with same number
                     //do stuff with snakes
                 }
                 //finished reading, calculate move:
@@ -63,7 +78,16 @@ public class MyAgent extends DevelopmentAgent {
             e.printStackTrace();
         }
     }
-    private void BreadthFirstSearch(){
-     
-   }
+    private static void addApple(int appx, int appy){
+      Matrix[appx][appy] = 9;
+    } 
+    private static String[] removeElement(String[] arr, int idx){
+       for (int k=idx;k<arr.length-1;k++)
+           arr[k]=arr[k+1];
+       int n = arr.length-1;
+       String[] x = new String[n];
+       for(int i=0;i<n;i++)
+           x[i]=arr[i];
+       return x;
+    }
 }
